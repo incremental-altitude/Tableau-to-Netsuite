@@ -9,6 +9,8 @@ $site_url ="cosmetic-solutions-fl";
 $parameters= "?filter.status=All&";
 //$host = 'https://cosmeticsolutionsfl-bieozqsgyuggf5miftz4c3v2mk9yssagqbj.rz-ops.com/api/3.4/auth/signin';
 $host = 'https://tableau.rz-ops.com/api/3.4/auth/signin';
+$tableau_site_id = 'aa0b49a6-1ff2-4057-9330-60cdfda28b45';
+$tableau_view_id ='f6034bf7-5bbc-4908-b87c-c48c77a8e08a';
 /*echo $host.'<br>'; */
 
 

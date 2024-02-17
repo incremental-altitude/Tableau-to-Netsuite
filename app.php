@@ -49,14 +49,11 @@ $ch = curl_init();
 
 $token =  $array_data['credentials']['@attributes']['token'];
 
-
 /*
 $host2 = 'https://tableau.rz-ops.com/api/3.9/sites/aa0b49a6-1ff2-4057-9330-60cdfda28b45/views/88df37cb-43c5-410f-87b0-a1c4545ae2ff/crosstab/excel?maxAge=1';*/
 
 /*Using Tableau Netsuite Itegration Workbook, with Product Alalysis View -Last Updated  01-30-2024 */
-$host2 = 'https://tableau.rz-ops.com/api/3.9/sites/aa0b49a6-1ff2-4057-9330-60cdfda28b45/views/f6034bf7-5bbc-4908-b87c-c48c77a8e08a/crosstab/excel?maxAge=1';
-
-
+$host2 = 'https://tableau.rz-ops.com/api/3.9/sites/'.$tableau_site_id.'/views/'.$tableau_view_id.'/crosstab/excel?maxAge=1';
 
 
 $fileName = 'data.xlsx'; // renaming image
@@ -70,36 +67,6 @@ curl_setopt($ch2, CURLOPT_HEADER, 0);
 $result = curl_exec($ch2);
 curl_close($ch2);
 fclose($fp);
-
-//convert the XML result into array
-//$array_data = json_decode(json_encode(simplexml_load_string($result)), true);
-
-/*
-print_r('<pre>');
-var_dump($array_data);
-print_r('</pre>'); 
-*/
-/*
-$ch2 = curl_init();
-  curl_setopt( $ch2, CURLOPT_URL, $host2);
-  curl_setopt($ch2, CURLOPT_HTTPHEADER, array(
-    'X-Tableau-Auth: '.$token));
-  curl_setopt( $ch2, CURLOPT_RETURNTRANSFER, true );
-  $result = curl_exec($ch2);
-  curl_close($ch2); */
- 
-        //convert the XML result into array
-        //$array_data = json_decode(json_encode(simplexml_load_string($result)), true);
-
-      // print_r('<pre>');
-      // print_r($fp);
-      // print_r('</pre>');
-
-// GET CSV from TABLEAU API
-
-// STEP 3 PARSE CSV
-
-//echo $start_date;
 
 $file_source = "data.xlsx";
 $rows = array();
@@ -117,7 +84,7 @@ if ( $xlsx = SimpleXLSX::parse($file_source)) {
 	print_r('<pre>');
 	echo 'TABLEAU DATA';
 	print_r( $rows );
-	print_r('</pre>'); 
+	print_r('</pre>');
 }
 
 function searchWorkOrder($service, $params){
@@ -180,7 +147,6 @@ if (!$searchResponse->searchResult->status->isSuccess) {
 	
 	return $search_result;	
 }
-
 }
 
 function updateWorkOrder($service, $params){	
@@ -289,14 +255,12 @@ $update_result = array(
     'success_count' => $success_count);
 	return $update_result;	
 }	
-
 }
 
 // STAGE 4
 // LOOP THROUGH THE ROWS AND PASS THE DATA TO NETSUITE
 
 $service = new NetSuiteService($config);
-
 
 // Declare Counts
 
@@ -322,8 +286,6 @@ foreach ($rows as $row){
        {
 
       if ($key == 'Run Id'){
-		  
-			
 			// Check to make sure WO is not blank
 			
 			if ($val != ""){
