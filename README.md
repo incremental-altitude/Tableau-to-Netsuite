@@ -1,7 +1,7 @@
 
 # Tableau to Netsuite Integration/Sync
 
-This is program designed to run a script that integrates a Tabluea Report View Line data into Netsuite, via Netsuite's Php Toolkit and SOAP API
+This is a program designed to run a script that integrates a Tabluea Report View Line data into Netsuite, via Netsuite's Php Toolkit and SOAP API
 This requires 2 Vendor Dependencies - Netsuite PHP, and SimpleXLSX.
 
 
